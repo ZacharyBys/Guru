@@ -27,7 +27,8 @@ SITE = StackAPI('stackoverflow')
 answers = SITE.fetch('/questions/{ids}/answers', ids=[questionNumber])
 answerList = answers.get('items')
 
+answerIds = []
 for answer in answerList:
-    answerIds.add(answer.get('answer_id'))
+    answerIds.append(answer.get('answer_id'))
 
 print answerIds
