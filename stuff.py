@@ -28,9 +28,31 @@ def print_formatted_answer(title, answer):
     print '|)-------------------------------------------------------------(|'
     print title
     print '|)-------------------------------------------------------------(|'
-    print '***********************************************************************************'
-    print strip_blank_lines(strip_tags(answer))
-    print '***********************************************************************************'
+
+    formattedAnswer = strip_blank_lines(strip_tags(answer))
+    lines = formattedAnswer.splitlines()
+
+    maxLine = 0
+    for line in lines:
+        if (len(line) > maxLine):
+            maxLine = len(line)
+    delimiter = ''
+    for i in range (0, maxLine+4):
+        delimiter = delimiter + '*'
+
+    print delimiter
+    
+    newLines = []
+    for line in lines:
+        newLine = line
+        for i in range (len(newLine), maxLine+1):
+            newLine = newLine + ' '
+        newLine = newLine + '|'
+        newLines.append(newLine)
+    for line in newLines:
+        print '| ' + line
+
+    print delimiter
 
 
 error = raw_input("Enter the error you want to search:  ")
