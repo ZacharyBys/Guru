@@ -31,5 +31,7 @@ answerIds = []
 for answer in answerList:
     answerIds.append(answer.get('answer_id'))
 
-goodAnswers = SITE.fetch('/answers/{ids}', ids=answerIds)
-print goodAnswers
+goodAnswers = SITE.fetch('/answers/{ids}', ids=answerIds, filter = 'withbody')
+goodAnswers = goodAnswers.get('items')
+
+print goodAnswers[0].get('body')
