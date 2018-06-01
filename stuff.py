@@ -1,6 +1,27 @@
 from googlesearch.googlesearch import GoogleSearch
 from stackapi import StackAPI
 import re
+from HTMLParser import HTMLParser
+
+### WILL NEED TO CHANGE FOR PYTHON 3 LATER
+### https://stackoverflow.com/questions/753052/strip-html-from-strings-in-python
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
+def strip_blank_lines(s):
+    text = re.sub(r'^$\n', '', s, flags=re.MULTILINE)
+    return text
 
 response = GoogleSearch().search("UnicodeEncodeError: 'charmap' codec can't encode character u'\u2013' in position 8008: character maps to <undefined>")
 resultUrl = ''
@@ -34,4 +55,6 @@ for answer in answerList:
 goodAnswers = SITE.fetch('/answers/{ids}', ids=answerIds, filter = 'withbody')
 goodAnswers = goodAnswers.get('items')
 
-print goodAnswers[0].get('body')
+firstAnswerBody = goodAnswers[0].get('body')
+firstAnswerBody = strip_tags(firstAnswerBody)
+print strip_blank_lines(firstAnswerBody)
