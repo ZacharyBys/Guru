@@ -23,12 +23,24 @@ def strip_blank_lines(s):
     text = re.sub(r'^$\n', '', s, flags=re.MULTILINE)
     return text
 
-response = GoogleSearch().search("UnicodeEncodeError: 'charmap' codec can't encode character u'\u2013' in position 8008: character maps to <undefined>")
+def print_formatted_answer(title, answer):
+    print ' '
+    print '|)-------------------------------------------------------------(|'
+    print title
+    print '|)-------------------------------------------------------------(|'
+    print '***********************************************************************************'
+    print strip_blank_lines(strip_tags(answer))
+    print '***********************************************************************************'
+
+
+error = raw_input("Enter the error you want to search:  ")
+response = GoogleSearch().search(error)
 resultUrl = ''
+answerTitle = ''
 
 for result in response.results:
     if (re.search(r'\bstackoverflow\b',result.url)):
-        print result.title
+        answerTitle = result.title
         resultUrl = result.url
         break
 
@@ -55,6 +67,4 @@ for answer in answerList:
 goodAnswers = SITE.fetch('/answers/{ids}', ids=answerIds, filter = 'withbody')
 goodAnswers = goodAnswers.get('items')
 
-firstAnswerBody = goodAnswers[0].get('body')
-firstAnswerBody = strip_tags(firstAnswerBody)
-print strip_blank_lines(firstAnswerBody)
+print_formatted_answer(answerTitle, goodAnswers[0].get('body'))
