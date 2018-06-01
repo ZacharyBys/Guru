@@ -25,9 +25,14 @@ def strip_blank_lines(s):
 
 def print_formatted_answer(title, answer):
     print ' '
-    print '|)-------------------------------------------------------------(|'
-    print title
-    print '|)-------------------------------------------------------------(|'
+    titleDelimiter = '|)'
+    for i in range (0, len(title)):
+        titleDelimiter = titleDelimiter + '-'
+    titleDelimiter = titleDelimiter + '(|'
+
+    print titleDelimiter
+    print '| ' + title + ' |'
+    print titleDelimiter
 
     formattedAnswer = strip_blank_lines(strip_tags(answer))
     lines = formattedAnswer.splitlines()
