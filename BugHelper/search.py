@@ -9,11 +9,17 @@ def searchError():
     resultUrl = ''
     answerTitle = ''
 
+    foundResult = False
     for result in response.results:
         if (re.search(r'\bstackoverflow\b',result.url)):
             answerTitle = result.title
             resultUrl = result.url
+            foundResult = True
             break
+
+    if (not foundResult):
+        print "There is no answer to that question. Perhaps seek help from the Oracles"
+        return
 
     for i in range(0,len(resultUrl)):
         if (resultUrl[i] == '/'):
