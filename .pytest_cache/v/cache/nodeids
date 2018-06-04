@@ -1,0 +1,5 @@
+[
+  "tests/test_cli.py::test_cli", 
+  "tests/test_cli.py::test_cli_with_option", 
+  "tests/test_cli.py::test_cli_with_arg"
+]
