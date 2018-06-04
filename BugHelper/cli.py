@@ -1,5 +1,6 @@
 import click
 
+from search import searchError
 
 @click.command()
 @click.option('--as-cowboy', '-c', is_flag=True, help='Greet as a cowboy.')
@@ -7,4 +8,4 @@ import click
 def main(name, as_cowboy):
     """Searches for command line errors and gives you the best answer from github"""
     greet = 'Howdy' if as_cowboy else 'Hello'
-    click.echo('{0}, {1}.'.format(greet, name))
+    click.echo(searchError())

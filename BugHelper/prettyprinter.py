@@ -1,5 +1,6 @@
 from stripper import strip_blank_lines_and_tags
 import re
+import click
 
 def print_formatted_answer(title, answer):
     print ' '
