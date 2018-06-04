@@ -37,4 +37,21 @@ for answer in answerList:
 goodAnswers = SITE.fetch('/answers/{ids}', ids=answerIds, filter = 'withbody')
 goodAnswers = goodAnswers.get('items')
 
-print_formatted_answer(answerTitle, goodAnswers[0].get('body'))
+answerAccepted = False
+chosenAnswer = 0
+for i in range (0, len(goodAnswers)):
+    if (goodAnswers[i].get('isAccepted') == True):
+        answerAccepted = True
+        chosenAnswer = i
+        break
+
+if (not answerAccepted):
+    currMax = 0
+    for j in range (0, len(goodAnswers)):
+        currScore = goodAnswers[i].get('score') * goodAnswers[i].get('owner').get('accept_rate')
+        if (currScore > currMax):
+            currMax = currScore
+            chosenAnswer = j
+
+
+print_formatted_answer(answerTitle, goodAnswers[chosenAnswer].get('body'))
