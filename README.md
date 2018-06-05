@@ -17,5 +17,8 @@ Simply run:
 
 To use it:
 
-    $ bughelper --help
+    $ bughelper --search
+    
+    This will open up a prompt for you to type in your error, or to ask a question, and an answer will be displayed
+
 

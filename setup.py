@@ -3,7 +3,7 @@ Searches for command line errors and gives you the best answer from github
 """
 from setuptools import find_packages, setup
 
-dependencies = ['click']
+dependencies = ['click', 'stackapi', 're', 'googlesearch', 'google-search', 'stripper']
 
 setup(
     name='bughelper',
