@@ -5,6 +5,8 @@ import re
 
 def searchError():
     error = raw_input("Enter the error you want to search:  ")
+    error += " Stackoverflow"
+    print "Searching the web..."
     response = GoogleSearch().search(error)
     resultUrl = ''
     answerTitle = ''
@@ -21,6 +23,7 @@ def searchError():
         print "There is no answer to that question. Perhaps seek help from the Oracles"
         return
 
+    print "Found a similar question."
     for i in range(0,len(resultUrl)):
         if (resultUrl[i] == '/'):
             questionNumber = ''
@@ -33,6 +36,7 @@ def searchError():
 
     questionNumber = int(questionNumber)
 
+    print "Looking for answers..."
     SITE = StackAPI('stackoverflow')
     answers = SITE.fetch('/questions/{ids}/answers', ids=[questionNumber])
     answerList = answers.get('items')
@@ -44,6 +48,7 @@ def searchError():
     goodAnswers = SITE.fetch('/answers/{ids}', ids=answerIds, filter = 'withbody')
     goodAnswers = goodAnswers.get('items')
 
+    print "Picking best answer..."
     answerAccepted = False
     chosenAnswer = 0
     for i in range (0, len(goodAnswers)):
@@ -60,5 +65,4 @@ def searchError():
                 currMax = currScore
                 chosenAnswer = j
 
-
-    return print_formatted_answer(answerTitle, goodAnswers[chosenAnswer].get('body'))
+    return print_formatted_answer(answerTitle, goodAnswers[chosenAnswer].get('body'), False)
