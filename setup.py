@@ -3,12 +3,12 @@ Searches for command line errors and gives you the best answer from github
 """
 from setuptools import find_packages, setup
 
-dependencies = ['click', 'stackapi', 're', 'googlesearch', 'google-search', 'stripper']
+dependencies = ['click', 'stackapi', 'google-search']
 
 setup(
-    name='bughelper',
+    name='guru',
     version='0.1.0',
-    url='https://github.com/ZacharyBys/BugHelper',
+    url='https://github.com/ZacharyBys/Guru',
     license='BSD',
     author='Zachary Bys',
     author_email='zachary.bys@gmail.com',
@@ -36,7 +36,7 @@ setup(
     keywords = 'cli',
     entry_points={
         'console_scripts': [
-            'bughelper = bughelper.cli:main',
+            'guru = guru.cli:main',
         ],
     },
 )
