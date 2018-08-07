@@ -1,4 +1,4 @@
-# BugHelper
+# Guru
 
 Searches for command line errors and gives you the best answer from github
 
@@ -17,7 +17,7 @@ Simply run:
 
 To use it:
 
-    $ bughelper --search
+    $ guru --search
     
     This will open up a prompt for you to type in your error, or to ask a question, and an answer will be displayed
 
